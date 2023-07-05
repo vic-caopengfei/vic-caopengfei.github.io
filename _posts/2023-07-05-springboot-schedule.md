@@ -11,8 +11,8 @@ typora-root-url: ..
 # Springboot定时任务使用和原理解析
 - 大型项目中一般会用到quartz进行定时任务的管理，但是一些小型目不需要进行分布式部署或者简单的任务则可以使用Springboot自带的@Scheduled来进行实现。我们一块来看下是如何使用以及实现的原理
 
-#### 一、Springboot定时任务使用
-#### 1. 简单配置定时任务
+## 一、Springboot定时任务使用
+### 1. 简单配置定时任务
 1).  在Springboot启动类添加注释@EnableScheduling 例如:
 ```
 @EnableScheduling
@@ -27,7 +27,7 @@ public class Application{
 }
 ```
 这样就搞定了
-#### 2. 通过@Configuration配置
+### 2. 通过@Configuration配置
 第一步  将启动类的@EnableScheduling去掉
 
 第二步  添加配置类SchedulerConfig
@@ -51,7 +51,7 @@ scheduling:
 >1. @ConditionalOnProperty用法: 配合@Configuration进行使用，当ConditionalOnProperty的为true时当前配置类生效
 
 ------------
-#### 二、定时器原理解析
+## 二、定时器原理解析
 先说原理：
 1.  Springboot定时任务是通过jdk java.util.concurrent包的`ScheduledThreadPoolExecutor`实现，
 2.  本次任务开始执行时，会确定下次任务的执行时间，将任务提交到ScheduledThreadPoolExecutor中，以达到循环执行的效果
