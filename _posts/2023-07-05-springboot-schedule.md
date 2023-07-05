@@ -4,7 +4,7 @@ author: vic
 date: 2023-07-05 00:34:00 +0800
 categories: [Blogging, Tutorial]
 tags: [favicon]
-typora-root-url: ..
+
 ---
 
 
@@ -63,16 +63,16 @@ scheduling:
 ScheduledAnnotationBeanPostProcessor初始化完成调用postProcessAfterInitialization，扫描带有注解 @Scheduled的，并把缓存起来（根据bean的声明周期postProcessAfterInitialization会在bean初始化完成后执行，）。
 不了解Spring bean的初始化过程的可以看下图
 
-![](/assets/img/post_image/up-5da34323581e78362b857c1c30d30f96ba5.webp)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-5da34323581e78362b857c1c30d30f96ba5.webp)
 
 源码如下：
 
-![](/assets/img/post_image/up-65ad558251b67e5c188cdd1518a57254691.webp)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-65ad558251b67e5c188cdd1518a57254691.webp)
 - 第二步:实例化完成后进行服务注册
 >ScheduledAnnotationBeanPostProcessor加载并实例化后触发onApplicationEvent finishRegistration() -> afterPropertiesSet 进行服务注册,任务最终由ReschedulingRunnable的schedule添加到了线程池中的
 
 1. 调用onApplicationEvent
-![](/assets/img/post_image/up-6944a09b2f43906f16bbeab68afcc27275c.webp)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-6944a09b2f43906f16bbeab68afcc27275c.webp)
 2. ScheduledTaskRegistrar的scheduledCornTask进行的服务注册
 ![](https://vic-caopengfei.github.io/assets/img/post_image/up-4defa1f27ace71d30aebfbcf4e17d13dd5d.webp)
 3. ScheduledTaskRegistrar中进行任务注册
