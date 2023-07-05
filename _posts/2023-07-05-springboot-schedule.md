@@ -2,7 +2,7 @@
 title: Springboot自带定时器使用和原理解析
 author: vic
 date: 2023-07-05 00:34:00 +0800
-categories: [Blogging, Tutorial]
+categories: [Blogging, Java]
 tags: [favicon]
 
 ---
