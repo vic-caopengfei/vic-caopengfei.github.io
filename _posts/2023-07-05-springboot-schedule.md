@@ -8,7 +8,7 @@ typora-root-url: ..
 ---
 
 
-# Springboot定时任务使用和原理解析
+
 - 大型项目中一般会用到quartz进行定时任务的管理，但是一些小型目不需要进行分布式部署或者简单的任务则可以使用Springboot自带的@Scheduled来进行实现。我们一块来看下是如何使用以及实现的原理
 
 ## 一、Springboot定时任务使用
