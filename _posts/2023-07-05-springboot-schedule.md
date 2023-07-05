@@ -62,29 +62,29 @@ scheduling:
 ScheduledAnnotationBeanPostProcessor初始化完成调用postProcessAfterInitialization，扫描带有注解 @Scheduled的，并把缓存起来（根据bean的声明周期postProcessAfterInitialization会在bean初始化完成后执行，）。
 不了解Spring bean的初始化过程的可以看下图
 
-![](https://oscimg.oschina.net/oscnet/up-5da34323581e78362b857c1c30d30f96ba5.png)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-5da34323581e78362b857c1c30d30f96ba5.webp)
 
 源码如下：
 
-![](https://oscimg.oschina.net/oscnet/up-65ad558251b67e5c188cdd1518a57254691.png)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-65ad558251b67e5c188cdd1518a57254691.webp)
 - 第二步:实例化完成后进行服务注册
 >ScheduledAnnotationBeanPostProcessor加载并实例化后触发onApplicationEvent finishRegistration() -> afterPropertiesSet 进行服务注册,任务最终由ReschedulingRunnable的schedule添加到了线程池中的
 
 1. 调用onApplicationEvent
-![](https://oscimg.oschina.net/oscnet/up-6944a09b2f43906f16bbeab68afcc27275c.png)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-6944a09b2f43906f16bbeab68afcc27275c.webp)
 2. ScheduledTaskRegistrar的scheduledCornTask进行的服务注册
-![](https://oscimg.oschina.net/oscnet/up-4defa1f27ace71d30aebfbcf4e17d13dd5d.png)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-4defa1f27ace71d30aebfbcf4e17d13dd5d.webp)
 3. ScheduledTaskRegistrar中进行任务注册
-![](https://oscimg.oschina.net/oscnet/up-cff7e14dc224bf8eb86139f49fe23909b39.png)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-cff7e14dc224bf8eb86139f49fe23909b39.webp)
 4.  ConcurrentTaskScheduler 的schedule方法
-![](https://oscimg.oschina.net/oscnet/up-77bcdd4e641ebf59dfe1d7725a4b5d8b422.png)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-77bcdd4e641ebf59dfe1d7725a4b5d8b422.webp)
 5.  最终在ReschedulingRunnable的schedule()方法中提交了ScheduledThreadPoolExecutor进行执行
-![](https://oscimg.oschina.net/oscnet/up-8659ca75b5143c3ab4a6da0f70afffea48a.png)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-8659ca75b5143c3ab4a6da0f70afffea48a.webp)
 到此任务注册完成，指定时间会有线程池进行执行。
 - 第三步： 循环执行逻辑
 >本次任务开始执行时，会确定下次任务的执行时间，并将任务提交到ScheduledThreadPoolExecutor中，以达到循环执行的效果
 
-![](https://oscimg.oschina.net/oscnet/up-62d9780d40ef468830a51aa219b083bab6e.png)
+![](https://vic-caopengfei.github.io/assets/img/post_image/up-62d9780d40ef468830a51aa219b083bab6e.webp)
 > 以上这就是Springboot定时器实现的全部逻辑。经过分析要注意一下两个问题
 1. ScheduledThreadPoolExecutor 是使用`Executors.newSingleThreadScheduledExecutor();`创建，所有定时任务会共用这一个线程池，并且线程池的核心线程数是1，任务执行不及时，会造成其他任务的延时。
 2. 如果系统是分布式，那定时任务不能同时开启。不然造成任务的重复执行
