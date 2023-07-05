@@ -4,7 +4,7 @@ author: vic
 date: 2023-03-22 00:34:00 +0800
 categories: [Blogging, DB]
 tags: [favicon]
-
+typora-root-url: ..
 ---
 
 ## 一、安装步骤
@@ -108,7 +108,7 @@ chown -R gpadmin:gpadmin /opt/greenplum
 安装成功后：安装目录的权限修改为gpadmin  命令如下：
 命令： chown -R gpadmin:gpadmin /opt/greenplum
 ```
- **![成功截图如下](https://vic-caopengfei.github.io/assets/img/post_image/143508_a6582583_1625231.webp "TIM图片20190331143456.webp")** 
+ **![成功截图如下](/assets/img/post_image/143508_a6582583_1625231.webp"TIM图片20190331143456.webp")** 
 
 ###  第11步：创建配置文件（master上执行，用gpadmin用户）
 ```
@@ -131,7 +131,7 @@ source /opt/greenplum/greenplum-db/greenplum_path.sh
 gpssh-exkeys -f /opt/greenplum/conf/hostlist   （注意当前路径）
 ```
  **显示   [INFO] completed successfully  即打通成功** 
-![输入图片说明](https://vic-caopengfei.github.io/assets/img/post_image/144329_82b2a60c_1625231.webp "22228.webp")
+![输入图片说明](/assets/img/post_image/144329_82b2a60c_1625231.webp "22228.webp")
 
  **测试节点是否打通成功**
 
@@ -142,7 +142,7 @@ pwd
 ```
 成功截图如下：
 
-![输入图片说明](https://vic-caopengfei.github.io/assets/img/post_image/144508_801a5c58_1625231.webp "333331.webp")
+![输入图片说明](/assets/img/post_image/144508_801a5c58_1625231.webp "333331.webp")
 
 ###  第13步：将安装包分发到每个子节点（master上执行，用gpadmin用户）
 ```
@@ -161,7 +161,7 @@ gpscp -f /opt/greenplum/conf/hostlist gp.tar =:/opt/greenplum/   （复制到每
 
 ```
 成功截图如下
-![输入图片说明](https://vic-caopengfei.github.io/assets/img/post_image/145811_f58098fc_1625231.webp "屏幕截图.webp")
+![输入图片说明](/assets/img/post_image/145811_f58098fc_1625231.webp "屏幕截图.webp")
 
 
 
@@ -179,7 +179,7 @@ gpscp -f /opt/greenplum/conf/hostlist gp.tar =:/opt/greenplum/   （复制到每
  
 ```
 成功截图如下
-![输入图片说明](https://vic-caopengfei.github.io/assets/img/post_image/150132_890bdbd6_1625231.webp "屏幕截图.webp")
+![输入图片说明](/assets/img/post_image/150132_890bdbd6_1625231.webp "屏幕截图.webp")
 
 
 ###  第15步： 配置.bash_profile环境变量（每台机器都需要修改）
@@ -233,7 +233,7 @@ gpinitsystem -c /opt/greenplum/conf/gpinitsystem_config -s gpmaster
 
 ###  第18步： 设置访问白名单（master上执行，用gpadmin用户）
 vi /home/gpadmin/gpdata/gpmaster/gpseg-1/pg_hba.conf
- 
+
 ```
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
  host    all            all             10.10.56.17/24             trust
@@ -265,9 +265,9 @@ gpstop -u
 #### 2.1.1  gp某个seg启动失败
 * 现象：gp某个segment启动异常。
 gpstate -m
-![输入图片说明](https://vic-caopengfei.github.io/assets/img/post_image/191910_0de18b0a_5021824.webp "屏幕截图.webp")
+![输入图片说明](/assets/img/post_image/191910_0de18b0a_5021824.webp "屏幕截图.webp")
 gpstate -m
-![输入图片说明](https://vic-caopengfei.github.io/assets/img/post_image/191943_5891beb3_5021824.webp "屏幕截图.webp")
+![输入图片说明](/assets/img/post_image/191943_5891beb3_5021824.webp "屏幕截图.webp")
 
 * 原因：服务器宕机重启后，启动异常，经查看，硬盘存储不够，segment恢复失败
 * 解决：增加一部分内存，然后手动恢复seg
@@ -280,15 +280,16 @@ gpstate -m
  使用 gprecoverseg -F
 ```
 * 错误：
-![输入图片说明](https://vic-caopengfei.github.io/assets/img/post_image/134029_385199e1_303502.webp "屏幕截图.webp")
+![输入图片说明](/assets/img/post_image/134029_385199e1_303502.webp "屏幕截图.webp")
 * 提示 ： perl: command not found
 *解决办法：
+  
    > yum -y install perl perl-devel 安装依赖即可 所有的服务器都要安装
 * 解决mirror和primary 互换的问题  
 `
 gprecoverseg -r
 `
 * 报错：-gprecoverseg failed. (Reason='Some segments are not yet synchronized.  All segments must be synchronized to rebalance.') exiting...
-![输入图片说明](https://vic-caopengfei.github.io/assets/img/post_image/135921_c98ef2f4_303502.webp "屏幕截图.webp")
+![输入图片说明](/assets/img/post_image/135921_c98ef2f4_303502.webp "屏幕截图.webp")
 * 原因 这时候节点正在恢复。需要等到恢复完成即可
 
