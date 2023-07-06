@@ -47,7 +47,7 @@ typora-root-url: ..
 
 这是`Non-repeatable read不可重复读`场景
 
-![Non-repeatable read](/assets/img/post_image/vzqcdiwkywlpv3z-csty11mm4jo.png"Non-repeatable read")
+![Non-repeatable read](/assets/img/post_image/vzqcdiwkywlpv3z-csty11mm4jo.png)
 
 
 
