@@ -24,7 +24,7 @@ typora-root-url: ..
 
 ### 数据库事务隔离界别(Isolation)
 
-数据库的隔离级别分为四种`read uncommitted`  `read committed`  `repeatable read` `serializable`
+数据库的隔离级别分为四种`read uncommitted`  `read committed`  `repeatable read` `serializeble`
 
 依次 隔离级别越来越高，对数据库性能影响越来越大。
 
@@ -32,33 +32,22 @@ typora-root-url: ..
 
 顾名思义 读未提交，在一个数据库session中，可以读到另一个线程session操作了数据库但是没有commit 结果，这种就会造成***脏读***
 
-
+![](/assets/img/post_image/up-e9fd93cbac87c7e0706368f261d4d75d956.webp)
 
 > read committed
 
 读已提交，在一个数据库session中，可以读到另一个线程已经提交的数据，这样虽然避免了脏读，但是还是不够安全，如果在一个线程中 重复查询同一条数据多次，在这期间发生了commit 就会导致 多次查询的结果不一致，这在正常业务中也是有问题 这个我们称之为***不可重复读***
 
-
+![](/assets/img/post_image/up-676d2e771c4be9958f86ad61c726b01f816.webp)
 
 > repeatable read
 
-可重复读，可以解决read committed 不可重复读的问题，**这也是目前大部分DBMS默认的事务隔离界别** 能保证在一个线程中多次读取的一致性；但在一些严格的场景中 还是会存在一些问题  比如此级别的事务正在执行时，另一个事务成功插入了某条数据，但因为它每次查询的结果都是一样的，所以会导致查询不到这条数据，自己重复插入时又失败（因为唯一约束的原因）。**明明在事务中查询不到这条信息，但自己就是插入不进去，这就叫幻读 （Phantom Read）。** 
+可重复读，可以解决read committed 不可重复读的问题，**这也是目前大部分DBMS默认的事务隔离界别** 能保证在一个线程中多次读取的一致性；在一些严格的场景中 还是会存在一些问题  比如此级别的事务正在执行时，另一个事务成功的插入了某条数据，但因为它每次查询的结果都是一样的，所以会导致查询不到这条数据，自己重复插入时又失败（因为唯一约束的原因）。**明明在事务中查询不到这条信息，但自己就是插入不进去，这就叫幻读 （Phantom Read）。**
 
-> serializable
+![](/assets/img/post_image/up-c960607f80531b464ca205ee63ef18bcd73.webp)
 
-串行读写, 所有的操作都是排成一个队列依次执行,一致性不会有任何问题，但是会带来严重的性能问题，所以不推荐这么做
-
-
-
-## 2. Spring 对事务的支持
-
-
-
-
-
-
-
-## 3. Spring 控制事务的方式
+## Spring 对事务的支持
+## Spring 控制事务的方式
 
 
 
