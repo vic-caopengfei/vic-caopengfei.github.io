@@ -1,94 +1,45 @@
-<div align="center">
+# Chirpy Starter [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)](https://rubygems.org/gems/jekyll-theme-chirpy) [![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
 
-  # Chirpy Jekyll Theme
+When installing the [**Chirpy**][chirpy] theme through [RubyGems.org][gem], Jekyll can only read files in the folders `/_data`, `/_layouts`, `/_includes`, `/_sass` and `/assets`, as well as a small part of options of the `/_config.yml` file from the theme's gem. If you have ever installed this theme gem, you can use the command `bundle info --path jekyll-theme-chirpy` to locate these files.
 
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+The Jekyll team claims that this is to leave the ball in the user’s court, but this also results in users not being able to enjoy the out-of-the-box experience when using feature-rich themes.
 
-  [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy?color=brightgreen)](https://rubygems.org/gems/jekyll-theme-chirpy)
-  [![CI](https://github.com/cotes2020/jekyll-theme-chirpy/actions/workflows/ci.yml/badge.svg)](https://github.com/cotes2020/jekyll-theme-chirpy/actions/workflows/ci.yml)
-  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4e556876a3c54d5e8f2d2857c4f43894)](https://www.codacy.com/gh/cotes2020/jekyll-theme-chirpy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cotes2020/jekyll-theme-chirpy&amp;utm_campaign=Badge_Grade)
-  [![GitHub license](https://img.shields.io/github/license/cotes2020/jekyll-theme-chirpy.svg)](https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE)
-  [![996.icu](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg)](https://996.icu)
+To fully use all the features of **Chirpy**, you need to copy the other critical files from the theme's gem to your Jekyll site. The following is a list of targets:
 
-  [**Live Demo →**][demo]
+```shell
+.
+├── _config.yml
+├── _plugins
+├── _tabs
+└── index.html
+```
 
-  [![Devices Mockup](https://chirpy-img.netlify.app/commons/devices-mockup.png)][demo]
+To save you time, and also in case you lose some files while copying, we extract those files/configurations of the latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so that you can start writing in minutes.
 
-</div>
+## Prerequisites
 
-## Features
+Follow the instructions in the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of the basic environment. [Git](https://git-scm.com/) also needs to be installed.
 
-<details>
-  <summary>
-    <i>Click to view features</i>
-  </summary>
-  <p>
+## Installation
 
-  - Dark / Light Theme Mode
-  - Localized UI language
-  - Pinned Posts
-  - Hierarchical Categories
-  - Trending Tags
-  - Table of Contents
-  - Last Modified Date of Posts
-  - Syntax Highlighting
-  - Mathematical Expressions
-  - Mermaid Diagram & Flowchart
-  - Dark / Light Mode Images
-  - Embed Videos
-  - Disqus / Utterances / Giscus Comments
-  - Search
-  - Atom Feeds
-  - Google Analytics
-  - SEO & Performance Optimization
+Sign in to GitHub and [**use this template**][use-template] to generate a brand new repository and name it `USERNAME.github.io`, where `USERNAME` represents your GitHub username.
 
-  </p>
-</details>
+Then clone it to your local machine and run:
 
-## Documentation
+```
+$ bundle
+```
 
-To explore usage, development, and upgrade guide of the project, please refer to
-the [Wiki][wiki].
+## Usage
 
-## Contributing
-
-Welcome to report bugs, help improve the code or submit new features.
-For more information, please see the ["Contributing Guidelines"][contribute-guide].
-
-## Credits
-
-This theme is mainly built with [Jekyll][jekyllrb] ecosystem,
-[Bootstrap][bootstrap], [Font Awesome][icons] and some other [wonderful tools][lib].
-The avatar and favicon design come from [Clipart Max][image].
-
-Thanks to all the [contributors][contributors]. Also, folks who submitted issues
-or unmerged PRs should not be forgotten. Because they reported bugs, shared ideas,
-or inspired me to write more readable documentation.
-
-Last but not least, thanks to [JetBrains][jetbrains] for providing the
-_Open Source Development_ license.
-
-## Sponsoring
-
-If you'd like to sponsor this project, the following options are available.
-
-[![Ko-fi](https://img.shields.io/badge/-Buy%20Me%20a%20Coffee-ff5f5f?logo=ko-fi&logoColor=white)](https://ko-fi.com/coteschung)
-[![Wechat Pay](https://img.shields.io/badge/-Tip%20Me%20on%20WeChat-brightgreen?logo=wechat&logoColor=white)][donation]
-[![Alipay](https://img.shields.io/badge/-Tip%20Me%20on%20Alipay-blue?logo=alipay&logoColor=white)][donation]
+Please see the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy#documentation).
 
 ## License
 
 This work is published under [MIT][mit] License.
 
-[jekyllrb]: https://jekyllrb.com/
-[bootstrap]: https://getbootstrap.com/
-[icons]: https://fontawesome.com/
-[image]: https://www.clipartmax.com/middle/m2i8b1m2K9Z5m2K9_ant-clipart-childrens-ant-cute/
-[demo]: https://cotes2020.github.io/chirpy-demo/
-[wiki]: https://github.com/cotes2020/jekyll-theme-chirpy/wiki
-[contribute-guide]: https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/.github/CONTRIBUTING.md
-[contributors]: https://github.com/cotes2020/jekyll-theme-chirpy/graphs/contributors
-[lib]: https://github.com/cotes2020/chirpy-static-assets
-[jetbrains]: https://www.jetbrains.com/?from=jekyll-theme-chirpy
-[donation]: https://sponsor.cotes.page/
-[mit]: https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE
+[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
+[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
+[use-template]: https://github.com/cotes2020/chirpy-starter/generate
+[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
+[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
