@@ -89,9 +89,9 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: vic-caopengfei/vic-caopengfei.github.io
-    repo_id: 
+    repo_id: vic-caopengfei.github.io
     category:  "Comments"
-    category_id:
+    category_id: vic-caopengfei.github.io
     mapping: 'pathname' # optional, default to 'pathname'
     input_position: 'bottom' # optional, default to 'bottom'
     lang: # optional, default to the value of `site.lang`
