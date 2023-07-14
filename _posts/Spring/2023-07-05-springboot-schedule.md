@@ -4,7 +4,7 @@ author: vic
 date: 2023-07-05 00:34:00 +0800
 categories: [Blogging, Java]
 tags: [favicon]
-typora-root-url: ..
+typora-root-url: ../../
 ---
 
 

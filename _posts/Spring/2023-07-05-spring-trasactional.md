@@ -5,7 +5,7 @@ author: vic
 date: 2022-02-21 00:34:00 +0800
 categories: [Blogging, Java]
 tags: [favicon]
-typora-root-url: ..
+typora-root-url: ../../
 ---
 
 
@@ -127,12 +127,12 @@ Spring 通过TransactionManager实现的事务的控制，不过我们的项目�
 - AOP + TransactionInterceptor
 
   ```java
-@Configuration
-@Aspect
-public class TransactionConfig {
+  @Configuration
+  @Aspect
+  public class TransactionConfig {
     @Autowired
     private TransactionManager transactionManager;
-
+  
     @Bean
     public TransactionInterceptor txAdvice() {
         // read only
@@ -152,13 +152,13 @@ public class TransactionConfig {
         source.addTransactionalMethod("view", readOnly);
         return new TransactionInterceptor(transactionManager, source);
     }
-
+  
     @Bean("txAdviceAdvisor")
     public Advisor txAdviceAdvisor() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression("");
         return new DefaultPointcutAdvisor(pointcut, txAdvice());
     }
-}
-
+  }
+  
   ```

@@ -4,7 +4,7 @@ author: vic
 date: 2023-03-22 00:34:00 +0800
 categories: [Blogging, DB]
 tags: [favicon]
-typora-root-url: ..
+typora-root-url: ../../
 ---
 
 ## 一、安装步骤
@@ -272,9 +272,9 @@ gpstate -m
 * 原因：服务器宕机重启后，启动异常，经查看，硬盘存储不够，segment恢复失败
 * 解决：增加一部分内存，然后手动恢复seg
  产生一个恢复文件：gprecoverseg -o ./recov
- 查看需要恢复的seg： cat recov
- 进行恢复： gprecoverseg -i ./recov
- 查看恢复状态： gpstate -m
+  查看需要恢复的seg： cat recov
+  进行恢复： gprecoverseg -i ./recov
+  查看恢复状态： gpstate -m
 #### 2.1.2 备份恢复
 ```
  使用 gprecoverseg -F
@@ -282,7 +282,7 @@ gpstate -m
 * 错误：
 ![输入图片说明](/assets/img/post_image/134029_385199e1_303502.webp "屏幕截图.webp")
 * 提示 ： perl: command not found
-*解决办法：
+  *解决办法：
   
    > yum -y install perl perl-devel 安装依赖即可 所有的服务器都要安装
 * 解决mirror和primary 互换的问题  
