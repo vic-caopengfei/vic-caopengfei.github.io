@@ -1,5 +1,5 @@
 ---
-title: 本地K8S部署
+title: Docker Desktop +k8s 安装实践
 author: vic
 date: 2022-07-13 00:34:00 +0800
 categories: [Blogging, devops]
