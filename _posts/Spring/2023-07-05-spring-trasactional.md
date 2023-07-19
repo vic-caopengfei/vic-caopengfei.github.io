@@ -303,8 +303,6 @@ mysql不直接支持链式事务
 
 #### Spring实现
 
-[PROPAGATION_NESTED](### PROPAGATION_NESTED)
-
 ```Java
 @Transactional(propagation=TransactionDefinition.PROPAGATION_NESTED)
 ```
