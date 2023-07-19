@@ -171,7 +171,7 @@ Spring 通过TransactionManager实现的事务的控制，不过我们的项目�
 
 #### mysql 实现
 
-```SQL
+```sql
 START TRANSACTION;
 
 -- 查询账户余额
@@ -191,7 +191,7 @@ COMMIT;
 
 #### Spring 实现 
 
- ```Java
+ ```java
  //Spring 默认的事务传播机制，propagation=TransactionDefinition.PROPAGATION_REQUIRED 可以省略
  @Transactional(propagation=TransactionDefinition.PROPAGATION_REQUIRED)
  public void tranfrom(){
@@ -211,10 +211,9 @@ COMMIT;
 而允许提交操作中的一部分操作，这种情况下，就需要将一系列操作分为几个不同的事务，通过代码来控制事务的提交流程,如下图如果操作
 在 MySQL 中，你可以使用保存点（Savepoint）来实现扁平事务（Flat Transaction），这样可以在事务内部设置多个保存点，并在需要的情况下回滚到指定的保存点，而不必回滚整个事务，下面是一个带有保存点的扁平事务的例子。**发生异常时撤销其中的一部分操作**
 
-
 #### Mysql 实现
 
-```SQL
+```sql
 START TRANSACTION;
 
 -- 保存点1
@@ -237,8 +236,11 @@ ROLLBACK TO SAVEPOINT sp2;
 
 -- 提交整个事务，包括保存点1的修改
 COMMIT;
-
 ```
+
+
+
+
 
 在上面的例子中，我们创建了一个带有保存点的扁平事务。首先，我们启动了事务（`START TRANSACTION`），然后在两个 `UPDATE` 语句之间设置了保存点1（`SAVEPOINT sp1`）。接着进行了一系列操作，然后又设置了保存点2（`SAVEPOINT sp2`）。
 
@@ -248,7 +250,7 @@ COMMIT;
 
 可以使用着两句来实现事务的保存点，手动控制事务的流程
 
-```Java
+```java
 //方式1 TransactionAspectSupport
 Object savePoint = TransactionAspectSupport.currentTransactionStatus().createSavepoint();		 
 ...		
@@ -277,7 +279,7 @@ jdbcTemplate.execute("ROLLBACK TO SAVEPOINT sp1");
 
 #### mysql 实现（不支持）
 
-mysql不直接支持链式事务
+mysql不直接支持链式事务,可以通过savepoint模拟
 
 #### Spring实现
 
@@ -303,7 +305,7 @@ mysql不直接支持链式事务
 
 #### Spring实现
 
-```Java
+```java
 @Transactional(propagation=TransactionDefinition.PROPAGATION_NESTED)
 ```
 
