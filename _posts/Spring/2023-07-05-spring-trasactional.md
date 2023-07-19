@@ -163,23 +163,153 @@ Spring 通过TransactionManager实现的事务的控制，不过我们的项目�
   
   ```
 
-## 4. 事务的分类
+## 4. 事务的分类及其实现
 
 ### 扁平事务
 
-再扁平事务中要么全部回滚，要么全部成功，事务要保持原子性，这个也各个数据库和框架默认事务类型，对应到传播机制中就是REQUIRED，扁平事务就是限制不能回滚或者提交一部分。
+在扁平事务中操作要么全部回滚，要么全部成功，事务要保持原子性，**现实项目中用的最多的事务类型**，对应到Spring传播机制中就是REQUIRED
+
+#### mysql 实现
+
+```SQL
+START TRANSACTION;
+
+-- 查询账户余额
+SELECT balance FROM accounts WHERE account_id = 1;
+
+-- 查询账户余额
+SELECT balance FROM accounts WHERE account_id = 2;
+
+-- 转账操作
+UPDATE accounts SET balance = balance - 200 WHERE account_id = 1;
+UPDATE accounts SET balance = balance + 200 WHERE account_id = 2;
+
+-- 提交整个事务
+COMMIT;
+
+```
+
+#### Spring 实现 
+
+ ```Java
+ //Spring 默认的事务传播机制，propagation=TransactionDefinition.PROPAGATION_REQUIRED 可以省略
+ @Transactional(propagation=TransactionDefinition.PROPAGATION_REQUIRED)
+ public void tranfrom(){
+   Account account1 = queryAccount(1);
+   Account account2 = queryAccount(2);
+   update(account1)
+   update(account2)
+ }
+ ```
+
+然而现实项目有的项目的
 
 
 
 ### 带有保存点的扁平事务
 
 而允许提交操作中的一部分操作，这种情况下，就需要将一系列操作分为几个不同的事务，通过代码来控制事务的提交流程,如下图如果操作
+在 MySQL 中，你可以使用保存点（Savepoint）来实现扁平事务（Flat Transaction），这样可以在事务内部设置多个保存点，并在需要的情况下回滚到指定的保存点，而不必回滚整个事务，下面是一个带有保存点的扁平事务的例子。**发生异常时撤销其中的一部分操作**
 
-![])_
+
+#### Mysql 实现
+
+```SQL
+START TRANSACTION;
+
+-- 保存点1
+SAVEPOINT sp1;
+
+UPDATE employees SET salary = salary + 10000 WHERE id = 1;
+UPDATE employees SET salary = salary + 8000 WHERE id = 2;
+
+-- 保存点2
+SAVEPOINT sp2;
+
+UPDATE employees SET salary = salary + 12000 WHERE id = 3;
+
+-- 执行一些其他操作...
+
+-- 回滚到保存点2，只撤销了保存点2后的修改，不影响保存点1的修改
+ROLLBACK TO SAVEPOINT sp2;
+
+-- 继续执行其他操作...
+
+-- 提交整个事务，包括保存点1的修改
+COMMIT;
+
+```
+
+在上面的例子中，我们创建了一个带有保存点的扁平事务。首先，我们启动了事务（`START TRANSACTION`），然后在两个 `UPDATE` 语句之间设置了保存点1（`SAVEPOINT sp1`）。接着进行了一系列操作，然后又设置了保存点2（`SAVEPOINT sp2`）。
+
+在事务执行的过程中，我们可以随时回滚到指定的保存点，这里我们选择回滚到保存点2（`ROLLBACK TO SAVEPOINT sp2`），这样只会撤销保存点2后的修改，保存点1的修改仍然保留。最后，如果一切正常，我们提交整个事务（`COMMIT`），使所有的修改生效。
+
+#### Spring 实现
+
+可以使用着两句来实现事务的保存点，手动控制事务的流程
+
+```Java
+//方式1 TransactionAspectSupport
+Object savePoint = TransactionAspectSupport.currentTransactionStatus().createSavepoint();		 
+...		
+TransactionAspectSupport.currentTransactionStatus().rollbackToSavepoint(savePoint);
+
+//方式2 SQL
+// 设置保存点1
+jdbcTemplate.execute("SAVEPOINT sp1");
+
+// 第三个更新操作
+jdbcTemplate.update("UPDATE employees SET salary = salary + 12000 WHERE id = 3");
+
+// 执行一些其他操作...
+
+// 回滚到保存点1，只撤销了保存点1后的修改，不影响前面的修改
+jdbcTemplate.execute("ROLLBACK TO SAVEPOINT sp1");
+
+```
 
 ### 链式事务
 
+- 链事务可视为保存点模式的一种变种，带有保存点的扁平事务，当发生系统崩溃时，所有的保存点都将消失，因为其保存点是易失的（volatile），而非持久的( persistent)。这意味着当进行恢复时，事务需要从开始处重新执行，而不能从最近的一个保存点继续执行
+  链事务的思想是：在提交一个事务时，释放不需要的数据对象，将必要的处理上下文隐式地传给下一个要开始的事务
+
+注意，提交事务操作和开始下一个事务操作将合并为一个原子操作。这意味着下一个事务将看到上一个事务的结果，就好像在一个事务中进行的一样。下图显示了链事务的工作方式：
+
+#### mysql 实现（不支持）
+
+mysql不直接支持链式事务
+
+#### Spring实现
+
+```java
+@Transactional(propagation=TransactionDefinition.PROPAGATION_REQUIRES_NEW)
+```
+
 ### 嵌套事务
 
+嵌套事务是指在一个事务内部可以再开启一个新的子事务，形成了多层嵌套的事务结构。在嵌套事务中，子事务可以独立于父事务进行提交或回滚，而不会影响父事务的提交或回滚。嵌套事务允许在一个事务内部有更细粒度的事务控制，对于复杂的业务场景和数据操作，可以提供更灵活和精确的事务管理。
+
+嵌套事务的特点包括：
+
+1. 嵌套事务形成多层结构：一个事务内部可以开启另一个事务，形成多个层次的事务结构。
+2. 子事务独立于父事务：子事务可以独立于父事务进行提交或回滚，子事务的提交或回滚不会影响父事务的状态。
+3. 事务传播行为：在嵌套事务中，需要定义事务传播行为，指定子事务如何与父事务进行交互。
+
+需要注意的是，嵌套事务并不是所有数据库都原生支持的特性，具体的支持程度取决于数据库的类型和版本。在某些数据库中，嵌套事务被转换成普通的非嵌套事务，即嵌套事务的提交或回滚会被转化为整个事务的提交或回滚。
+
+#### mysql 实现（不支持）
+
+mysql不直接支持链式事务
+
+#### Spring实现
+
+[PROPAGATION_NESTED](### PROPAGATION_NESTED)
+
+```Java
+@Transactional(propagation=TransactionDefinition.PROPAGATION_NESTED)
+```
+
 ### 分布式事务
+
+
 

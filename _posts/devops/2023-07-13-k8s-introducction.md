@@ -164,7 +164,9 @@ Deployment
 
 ### 1. K8S 集群如何部署？
 
-K8S 
+  K8S部署一个nginx
+
+
 
 
 
