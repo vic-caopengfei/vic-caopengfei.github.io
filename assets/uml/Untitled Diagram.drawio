@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-07-19T05:27:02.037Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="1kCXIDp9LnmKfkE-6eEq" version="21.6.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-07-19T06:25:49.784Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="DH1nsCBUxCcm-_vrvbnY" version="21.6.2" type="github">
   <diagram name="Page-1" id="GzhSxGq-bqeo7eVyVP8Y">
-    <mxGraphModel dx="1562" dy="837" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1562" dy="779" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -30,6 +30,110 @@
         </mxCell>
         <mxCell id="f1BawXqNur_GOFj9Xza5-31" value="操作5" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
           <mxGeometry x="50" y="230" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="XpBeHW_sAtIvVip-IHg_-6" target="XpBeHW_sAtIvVip-IHg_-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-17" value="是否就绪" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XpBeHW_sAtIvVip-IHg_-9">
+          <mxGeometry x="-0.0237" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="XpBeHW_sAtIvVip-IHg_-6" target="XpBeHW_sAtIvVip-IHg_-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="144" y="474" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-19" value="是否就绪" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XpBeHW_sAtIvVip-IHg_-15">
+          <mxGeometry x="-0.0139" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-6" value="事务管理器&lt;br&gt;开启事务" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="70" y="384" width="74" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.984;entryY=0.362;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XpBeHW_sAtIvVip-IHg_-7" target="XpBeHW_sAtIvVip-IHg_-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-18" value="已就绪" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XpBeHW_sAtIvVip-IHg_-10">
+          <mxGeometry x="-0.0258" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-7" value="本地资源管理RM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="266" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.973;entryY=0.877;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XpBeHW_sAtIvVip-IHg_-8" target="XpBeHW_sAtIvVip-IHg_-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="264" y="509" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-20" value="已就绪" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XpBeHW_sAtIvVip-IHg_-16">
+          <mxGeometry x="0.0388" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-8" value="本地资源管理RM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="264" y="459" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="XpBeHW_sAtIvVip-IHg_-25" target="XpBeHW_sAtIvVip-IHg_-28" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-22" value="提交" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XpBeHW_sAtIvVip-IHg_-21">
+          <mxGeometry x="-0.0237" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" source="XpBeHW_sAtIvVip-IHg_-25" target="XpBeHW_sAtIvVip-IHg_-31" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="142" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-24" value="提交" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XpBeHW_sAtIvVip-IHg_-23">
+          <mxGeometry x="-0.0139" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-25" value="事务管理器&lt;br&gt;开启事务" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="68" y="550" width="74" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.984;entryY=0.362;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" source="XpBeHW_sAtIvVip-IHg_-28" target="XpBeHW_sAtIvVip-IHg_-25" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-27" value="提交成功" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XpBeHW_sAtIvVip-IHg_-26">
+          <mxGeometry x="-0.0258" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-28" value="本地资源管理RM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="264" y="556" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.973;entryY=0.877;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" source="XpBeHW_sAtIvVip-IHg_-31" target="XpBeHW_sAtIvVip-IHg_-25" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="262" y="675" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-30" value="提交成功" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XpBeHW_sAtIvVip-IHg_-29">
+          <mxGeometry x="0.0388" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-31" value="本地资源管理RM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="262" y="625" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-32" value="第一阶段" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="423" y="440" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XpBeHW_sAtIvVip-IHg_-33" value="第二阶段" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="423" y="598" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
