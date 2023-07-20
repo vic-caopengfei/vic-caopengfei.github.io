@@ -465,5 +465,9 @@ saga事务是通过saga事务协调器来编排和控制事务，如下图
 
 长事务，异构系统，复杂的业务场景
 
+### Java mysql  两段提交/XA事务模型
 
+### Java mysql TCC事务实现
+
+### Java Mysql  JTA事务模型
 
