@@ -134,6 +134,55 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzOThFVkYzY3NBb1phMVJSWkZfQVlJNU9wUGV6NHNGeGJWYnpT
 
 ![](/assets/img/post_image/WX20230714-211341@2x.png)
 
+```
+获取长期的token
+
+kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
+```
+
+由于访问地址每次都要启动的kubectl proxy 所以我们通过的ingress来代理服务，这样的，我们只需要使用localhost就可以的访问了
+
+### 安装Nginx Controller
+
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/cloud/deploy.yaml
+```
+
+如果访问不了就可以下载执行
+
+### 配置DashBoard的ingress
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: kubernetes-dashboard
+  name: kubernetes-dashboard-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    # Uncomment next if you use https://cert-manager.io/
+    # cert-manager.io/cluster-issuer: "<YOUR CLUSTER ISSUER>"
+spec:
+  tls:
+  - hosts:
+    - k8s.dashboard.vic
+    secretName: kubernetes-dashboard-cert
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kubernetes-dashboard
+            port:
+               number: 443
+```
+
+通过的 https://locahost 就可以访问啦
+
 ### 卸载 Uninstall
 
 如果不需要，想删除，就可以通过安装文件删除即可
