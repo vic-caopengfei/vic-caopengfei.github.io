@@ -1,5 +1,5 @@
 ---
-title: Docker Desktop +k8s 安装实践
+title: K8S + K8S Dashboard 安装（Docker desktop）
 author: vic
 date: 2022-07-13 00:34:00 +0800
 categories: [Blogging, devops]
