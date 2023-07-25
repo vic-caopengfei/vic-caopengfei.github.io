@@ -1,6 +1,6 @@
 ---
 
-title: Spring 事务详解
+title: 数据库事务总结和Spring相关实现
 author: vic
 date: 2022-02-21 00:34:00 +0800
 categories: [Blogging, Java]
@@ -468,4 +468,3 @@ saga事务是通过saga事务协调器来编排和控制事务，如下图
 ## Seata 框架介绍
 
 TCC 和 Saga 都需要进行编排，
-
